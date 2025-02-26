@@ -1,0 +1,67 @@
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แพลตฟอร์มรับเรื่องร้องเรียน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff5e78;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #ff5e78;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e0485a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>แพลตฟอร์มรับเรื่องร้องเรียน</h1>
+        <p>แจ้งปัญหาและเสนอแนวทางแก้ไขเพื่อพัฒนาชุมชนของเรา</p>
+        <form>
+            <label for="name">ชื่อของคุณ:</label>
+            <input type="text" id="name" placeholder="ใส่ชื่อของคุณ" required>
+            
+            <label for="issue">ปัญหาที่พบ:</label>
+            <textarea id="issue" rows="4" placeholder="อธิบายปัญหาของคุณ" required></textarea>
+            
+            <label for="solution">แนวทางแก้ไข (ถ้ามี):</label>
+            <textarea id="solution" rows="4" placeholder="เสนอแนวทางแก้ไข (ไม่บังคับ)"></textarea>
+            
+            <button type="submit">ส่งเรื่องร้องเรียน</button>
+        </form>
+    </div>
+</body>
+</html>
