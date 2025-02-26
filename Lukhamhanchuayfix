@@ -1,0 +1,54 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { Send, Smile } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function FeedbackForm() {
+  const [name, setName] = useState("");
+  const [issue, setIssue] = useState("");
+
+  const handleSubmit = async () => {
+    const response = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, issue }),
+    });
+    if (response.ok) {
+      alert("ส่งข้อมูลสำเร็จ!");
+      setName("");
+      setIssue("");
+    } else {
+      alert("เกิดข้อผิดพลาด กรุณาลองอีกครั้ง");
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-400 to-blue-500 p-6">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
+        <Card className="max-w-lg w-full p-6 bg-white shadow-2xl rounded-2xl">
+          <CardContent>
+            <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">📢 ส่งปัญหาและข้อเสนอแนะของคุณ!</h1>
+            <p className="text-center text-gray-600 mb-6">ช่วยกันสร้างชุมชนให้น่าอยู่ขึ้น 💡</p>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">👤 ชื่อของคุณ</label>
+              <Input placeholder="ชื่อของคุณ" value={name} onChange={(e) => setName(e.target.value)} />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 mb-2">✍️ ปัญหาหรือข้อเสนอแนะ</label>
+              <Textarea placeholder="อธิบายปัญหาหรือข้อเสนอแนะของคุณ" value={issue} onChange={(e) => setIssue(e.target.value)} />
+            </div>
+            <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2" onClick={handleSubmit}>
+              <Send size={16} /> ส่งข้อเสนอแนะ
+            </Button>
+          </CardContent>
+        </Card>
+      </motion.div>
+      <footer className="mt-6 text-white text-sm">สร้างโดย ทินกร พลสุข 🚀</footer>
+    </div>
+  );
+}
